@@ -1,0 +1,58 @@
+cabal-version: 3.0
+name: advent
+version: 0.1.0.0
+
+common lib-shared -- {{{
+  mixins:
+    , base hiding (Prelude)
+    , base-prelude (BasePrelude as Prelude)
+  default-language: GHC2021
+  include-dirs: include
+  default-extensions:
+    , BlockArguments
+    , CPP
+    , DataKinds
+    , LambdaCase
+    , MultiWayIf
+    , RecordWildCards
+    , ViewPatterns
+  -- ghc-options: -pgmL markdown-unlit
+  ghc-options: -O2
+  build-depends: base, base-prelude
+    , array
+    , containers
+    , extra
+    , lens
+    , linear
+    , llrbtree
+    , mtl
+    , pcre-heavy
+    , split
+    , tagged
+    , text
+    , unix
+
+library
+  import: lib-shared
+  hs-source-dirs: lib
+  exposed-modules: Advent
+
+common shared
+  import: lib-shared
+  hs-source-dirs: src
+  build-depends: advent
+
+-- }}}
+
+executable day03
+  import: shared
+  ghc-options: -rtsopts
+  main-is: day03.hs
+
+executable day02
+  import: shared
+  main-is: day02.hs
+
+executable day01
+  import: shared
+  main-is: day01.hs
