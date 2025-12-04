@@ -50,7 +50,6 @@ executable day04
 
 executable day03
   import: shared
-  ghc-options: -rtsopts
   main-is: day03.hs
 
 executable day02
