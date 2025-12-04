@@ -44,6 +44,10 @@ common shared
 
 -- }}}
 
+executable day04
+  import: shared
+  main-is: day04.hs
+
 executable day03
   import: shared
   ghc-options: -rtsopts
