@@ -1,31 +1,23 @@
 #include "header.hs"
 
-main = do
-    [alg] <- getArgs
-    let f = case alg of
-            "std" -> standard
-            "dyn" -> dynamic
-    getContents >>= print . solve f . parse
+main = getContents >>= print . solve . parse
 
-parse = map (map digitToInt) . lines
+parse = map (annotate . map digitToInt) . lines
 
-solve f = sum . map (f 12)
+annotate xx = zip xx [l,l-1..] where l = length xx
 
--- sort to find the highest digit available per position
-standard n xx =
-    go 0 n ss
+solve xxx =
+    (part1,part2)
   where
-    l = length xx
-    ss = sortBy (comparing Down) $ zip xx [l,l-1..]
-    go !z 0 _ = z
-    go !z n ss =
-        go (x + z * 10) (n-1) ss'
-      where
-        (aa,(x,i):bb) = span ((<n).snd) ss
-        ss' = filter ((<i).snd) ss
+    part1 = sum $ map (answer 0  2) xxx
+    part2 = sum $ map (answer 0 12) xxx
 
--- build up a list of answers with dynamic programming
-dynamic n =
-    last . foldl' go (replicate n 0)
+answer !z 0 cc = z
+answer !z n cc =
+    answer (z*10+x) (n-1) cc'
   where
-    go answers x = zipWith max answers (0:answers & map \z -> x + z * 10)
+    ((x,_):cc') = foldr1 f (tails cc)
+    f aa [] = aa
+    f aa bb@((_,i):_)
+        | i < n = aa
+        | otherwise = max aa bb
