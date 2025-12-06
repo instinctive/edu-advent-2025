@@ -1,5 +1,7 @@
 module Main where
 
+import Prelude hiding ( readInt )
+
 import Advent
 
 import Control.Monad.State
@@ -8,3 +10,9 @@ import Linear.V2
 
 import qualified Data.Map.Strict as M
 import qualified Data.Set        as S
+
+readInt :: String -> Int
+readInt = read
+
+readInts :: [String] -> [Int]
+readInts = map readInt

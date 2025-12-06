@@ -44,6 +44,14 @@ common shared
 
 -- }}}
 
+executable day06
+  import: shared
+  main-is: day06.hs
+
+executable day05
+  import: shared
+  main-is: day05.hs
+
 executable day04
   import: shared
   main-is: day04.hs
