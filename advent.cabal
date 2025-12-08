@@ -35,7 +35,7 @@ common lib-shared -- {{{
 library
   import: lib-shared
   hs-source-dirs: lib
-  exposed-modules: Advent
+  exposed-modules: Advent, UnionFind
 
 common shared
   import: lib-shared

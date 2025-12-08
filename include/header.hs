@@ -3,6 +3,7 @@ module Main where
 import Prelude hiding ( readInt )
 
 import Advent
+import qualified UnionFind as UF
 
 import Control.Monad.State
 import Data.Array
