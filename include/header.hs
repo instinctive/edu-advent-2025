@@ -7,6 +7,8 @@ import Advent
 import Control.Monad.State
 import Data.Array
 import Data.List.Split (splitOn,chunksOf)
+import Data.Map.Strict (Map)
+import Data.Set (Set)
 import Linear.V2
 
 import qualified Data.Map.Strict as M
