@@ -1,3 +1,9 @@
 module Advent where
 
-life = 42 :: Int
+import Prelude hiding (readInt)
+
+readInt :: String -> Int
+readInt = read
+
+readInts :: [String] -> [Int]
+readInts = map readInt
