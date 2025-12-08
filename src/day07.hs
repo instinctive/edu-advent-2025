@@ -26,15 +26,3 @@ solve2 (l:ll) =
         | ((_,x):(b,y):(_,z):_) <- tails $ zip (wrap '?' qq) (wrap 1 nn) ]
 
 wrap q l = [q] <> l <> [q]
-
--- solve2 ll =
---     find ((=='S').fst) $
---     zip (head ll) $
---     foldr goLine (repeat 1) ll
---   where
---     goLine :: [Char] -> [Int] -> [Int]
---     goLine qq nn =
---         let nn' = [1] <> nn <> [1] in
---         [ if hat b then x + z else y
---         | ((a,x):(b,y):(c,z):_) <- tails (zip (wrap qq) nn')
---         ]
