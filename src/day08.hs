@@ -54,7 +54,6 @@ solve q vv =
     pairs = snd <$> sort [ (dist2 a b, (Box a, Box b)) | a <- [1..n-1], b <- [a+1..n] ]
     -- circuit candidates from successive connections
     cands = scanl go start pairs
-    go :: St -> (Box,Box) -> St
     go st pair = flip execState st $ connectBoxes pair
     start = St (Circuit 0) M.empty M.empty
     -- compute the answers from the circuit candidates
@@ -63,7 +62,7 @@ solve q vv =
     Just ((Box a, Box b),_) = find ((==n).M.size._boxToCircuit.snd) $ zip pairs $ tail cands
 
 main = do
-    [q] <- getArgs
+    [q] <- getArgs -- number of connections for part 1
     getContents >>= print . solve (readInt q) . parse
 
 parse = lines >>> map (mk . readInts . splitOn ",") where mk [a,b,c] = V3 a b c
